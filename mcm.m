@@ -102,7 +102,7 @@ global normalstd
 global trimin
 global trimost
 global trimax
-Nuniform=length(uniformmin)
+Nuniform=length(uniformmin)%这是什么用意？最好能给你的程序写注释要不看着比较费劲
 Nnormal=length(normalmean)
 Ntri=length(trimin)
 edit4str=get(handles.edit4,'string')
