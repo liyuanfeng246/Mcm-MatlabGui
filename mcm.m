@@ -23,35 +23,6 @@ guidata(hObject, handles);
 function varargout = mcm_OutputFcn(hObject, eventdata, handles) 
 varargout{1} = handles.output;
 
-function pushbutton1_Callback(hObject, eventdata, handles)
-global choice
-choice=1
-set(handles.text3,'string','最小值')
-set(handles.text4,'string','最大值')
-set(handles.text5,'string','')
-set(handles.edit1,'string','')
-set(handles.edit2,'string','')
-set(handles.edit3,'string','')
-
-function pushbutton2_Callback(hObject, eventdata, handles)
-global choice
-choice=2
-set(handles.text3,'string','平均值')
-set(handles.text4,'string','标准差')
-set(handles.text5,'string','')
-set(handles.edit1,'string','')
-set(handles.edit2,'string','')
-set(handles.edit3,'string','')
-
-function pushbutton3_Callback(hObject, eventdata, handles)
-global choice
-choice=3
-set(handles.text3,'string','最小值')
-set(handles.text4,'string','最可能的值')
-set(handles.text5,'string','最大值')
-set(handles.edit1,'string','')
-set(handles.edit2,'string','')
-set(handles.edit3,'string','')
 function edit1_Callback(hObject, eventdata, handles)
 
 function edit1_CreateFcn(hObject, eventdata, handles)
@@ -94,6 +65,36 @@ if ispc && isequal(get(hObject,'BackgroundColor'), get(0,'defaultUicontrolBackgr
     set(hObject,'BackgroundColor','white');
 end
 
+function pushbutton1_Callback(hObject, eventdata, handles)
+global choice
+choice=1
+set(handles.text3,'string','最小值')
+set(handles.text4,'string','最大值')
+set(handles.text5,'string','')
+set(handles.edit1,'string','')
+set(handles.edit2,'string','')
+set(handles.edit3,'string','')
+
+function pushbutton2_Callback(hObject, eventdata, handles)
+global choice
+choice=2
+set(handles.text3,'string','平均值')
+set(handles.text4,'string','标准差')
+set(handles.text5,'string','')
+set(handles.edit1,'string','')
+set(handles.edit2,'string','')
+set(handles.edit3,'string','')
+
+function pushbutton3_Callback(hObject, eventdata, handles)
+global choice
+choice=3
+set(handles.text3,'string','最小值')
+set(handles.text4,'string','最可能的值')
+set(handles.text5,'string','最大值')
+set(handles.edit1,'string','')
+set(handles.edit2,'string','')
+set(handles.edit3,'string','')
+
 function pushbutton4_Callback(hObject, eventdata, handles)
 global uniformmin
 global uniformmax
@@ -102,7 +103,39 @@ global normalstd
 global trimin
 global trimost
 global trimax
-Nuniform=length(uniformmin)%这是什么用意？最好能给你的程序写注释要不看着比较费劲
+edit1str=get(handles.edit1,'string')
+edit2str=get(handles.edit2,'string')
+edit3str=get(handles.edit3,'string')
+global choice
+if choice==1
+    uniformmin=[uniformmin,str2double(edit1str)]
+    uniformmax=[uniformmax,str2double(edit2str)]
+end
+if choice==2
+    normalmean=[normalmean,str2double(edit1str)]
+    normalstd=[normalstd,str2double(edit2str)]
+end
+if choice==3
+    trimin=[trimin,str2double(edit1str)]
+    trimost=[trimost,str2double(edit2str)]
+    trimax=[trimax,str2double(edit3str)]
+end
+set(handles.text3,'string','')
+set(handles.text4,'string','')
+set(handles.text5,'string','')
+set(handles.edit1,'string','')
+set(handles.edit2,'string','')
+set(handles.edit3,'string','')
+
+function pushbutton5_Callback(hObject, eventdata, handles)
+global uniformmin
+global uniformmax
+global normalmean
+global normalstd
+global trimin
+global trimost
+global trimax
+Nuniform=length(uniformmin)
 Nnormal=length(normalmean)
 Ntri=length(trimin)
 edit4str=get(handles.edit4,'string')
@@ -166,38 +199,6 @@ set(handles.text9,'string',num2str(ymean))
 set(handles.text11,'string',num2str(ystd))
 set(handles.text13,'string',num2str(y95))
 
-function pushbutton5_Callback(hObject, eventdata, handles)
+function pushbutton6_Callback(hObject, eventdata, handles)
 global y
 Nhist(y)
-
-function pushbutton6_Callback(hObject, eventdata, handles)
-global uniformmin
-global uniformmax
-global normalmean
-global normalstd
-global trimin
-global trimost
-global trimax
-edit1str=get(handles.edit1,'string')
-edit2str=get(handles.edit2,'string')
-edit3str=get(handles.edit3,'string')
-global choice
-if choice==1
-    uniformmin=[uniformmin,str2double(edit1str)]
-    uniformmax=[uniformmax,str2double(edit2str)]
-end
-if choice==2
-    normalmean=[normalmean,str2double(edit1str)]
-    normalstd=[normalstd,str2double(edit2str)]
-end
-if choice==3
-    trimin=[trimin,str2double(edit1str)]
-    trimost=[trimost,str2double(edit2str)]
-    trimax=[trimax,str2double(edit3str)]
-end
-set(handles.text3,'string','')
-set(handles.text4,'string','')
-set(handles.text5,'string','')
-set(handles.edit1,'string','')
-set(handles.edit2,'string','')
-set(handles.edit3,'string','')
